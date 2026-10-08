@@ -1,4 +1,6 @@
+#include <cstring>
 #include <iostream>
+#include <utility>
 using namespace std;
 
 // sa se sorteze un nr de max 50 siruri fiecare sir avand max 20 char
@@ -8,6 +10,7 @@ using namespace std;
 int main() {
     char a[50][21], *v[50];
     int nr;
+    bool swapp;
     cout << "dati nr de siruri:\n";
     cin >> nr;
 
@@ -16,6 +19,19 @@ int main() {
         cin >> a[i];
         v[i]=a[i];
         cout << endl;
+    }
+
+    for (int i = 0; i < nr-1; i++) {
+        swapp = false;
+        for (int j = 0; j < nr-i-1; j++) {
+            if (strcmp(v[j], v[j+1])>0) {
+                swapp = true;
+                swap(v[j], v[j+1]);
+            }
+        }
+        if (!swapp) {
+             break;
+        }
     }
 
 
