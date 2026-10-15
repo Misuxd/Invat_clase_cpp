@@ -38,19 +38,46 @@ public:
         strcpy(UnitMasura,fum);
     }
 
-    float price() {
-        return pretbuc;
-    }
+    float price();
+    void afis();
+    void set_nume(const char *name){strcpy(nume,name);}
+    char *get_nume(){return nume;} // ca sa am un alt vector de nume cu care sa lucrez
 
 };
 
+float Material::price() {
+    return pretbuc;
+}
+void Material::afis() {
+    cout<<"**********************************************************\n";
+    cout<<"cod: "<< cod<< endl;
+    cout <<"nume: "<< nume << endl;
+    cout<<"price: "<<pretbuc<<endl;
+    cout<<"unitmasura: "<< UnitMasura<<endl;
+    cout<<"cantitate: "<< cantitate<<endl;
+    cout<<"**********************************************************\n";
+
+}
 
 int main () {
     int c ,  q;
     char name[30], um[4];
     float p;
+
+
     Material mat(c,q,name,um,p);
     Material mat2(2,"var","buc",102);
     cout << mat2.price() << endl;
+    mat2.afis();
+
+
+    Material *vm = new Material[]{Material(2,"var","buc",102),Material(c,q,name,um,p)};
+    for (i=0;i<3;i++) {
+        vm[i].afis();
+    }
+    // Uita te in ai cum se face
+    // am nevoie de fiecare constructor
     return 0;
 }
+
+//vect de alocare dinamic care sa construiasca un vect de materiale
