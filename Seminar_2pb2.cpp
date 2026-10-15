@@ -33,14 +33,24 @@ public:
         strcpy(UnitMasura,um);
         pretbuc=p;
     }
+    Material(int fq, char *fname,char *fum, float fp) : cantitate(fq), pretbuc(fp) {
+        strcpy(nume,fname);
+        strcpy(UnitMasura,fum);
+    }
+
+    float price() {
+        return pretbuc;
+    }
 
 };
+
 
 int main () {
     int c ,  q;
     char name[30], um[4];
     float p;
     Material mat(c,q,name,um,p);
-
+    Material mat2(2,"var","buc",102);
+    cout << mat2.price() << endl;
     return 0;
 }
