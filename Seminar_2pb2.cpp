@@ -17,16 +17,16 @@ private:
 public:
     Material(int c ,int  q ,char name[],char um[],float p) {
 
-        cout<<"Introdu codul produsului:\n";
-        cin>>c;
-        cout<<"Introdu numele materialului:\n";
-        cin>>name;
-        cout<<"Introdu pretul/buc:\n";
-        cin>>p;
-        cout<<"Introdu cantitatea:\n";
-        cin>>q;
-        cout<<"Introdu unit masura:\n";
-        cin>>um;
+        // cout<<"Introdu codul produsului:\n";
+        // cin>>c;
+        // cout<<"Introdu numele materialului:\n";
+        // cin>>name;
+        // cout<<"Introdu pretul/buc:\n";
+        // cin>>p;
+        // cout<<"Introdu cantitatea:\n";
+        // cin>>q;
+        // cout<<"Introdu unit masura:\n";
+        // cin>>um;
         cod=c;
         cantitate=q;
         strcpy(nume,name);
@@ -42,6 +42,13 @@ public:
     void afis();
     void set_nume(const char *name){strcpy(nume,name);}
     char *get_nume(){return nume;} // ca sa am un alt vector de nume cu care sa lucrez
+
+    char *operator[](int k) {
+        if (k>=0&&k<strlen(nume))return nume+k;
+
+        return NULL;
+        // exit(1);
+    }
 
 };
 
@@ -65,16 +72,22 @@ int main () {
     float p;
 
 
-    Material mat(c,q,name,um,p);
+    Material mat(1,3,"ciment","kg",30);
     Material mat2(2,"var","buc",102);
     cout << mat2.price() << endl;
+    char o;
+    if (mat2[2]!=NULL) o=*mat[0];
+    else cerr<<"index out of bounds";
+    cout << o << endl;
+    *mat2[2]='T';
     mat2.afis();
 
 
-    Material *vm = new Material[]{Material(2,"var","buc",102),Material(c,q,name,um,p)};
-    for (i=0;i<3;i++) {
-        vm[i].afis();
-    }
+
+    //Material *vm = new Material[]{Material(2,"var","buc",102),Material(c,q,name,um,p)};
+    // for (int i=0;i<3;i++) {
+    //     vm[i].afis();
+    // }
     // Uita te in ai cum se face
     // am nevoie de fiecare constructor
     return 0;
